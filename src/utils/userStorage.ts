@@ -7,7 +7,7 @@ const DEFAULT_USER: User = {
   id: "hl",
   username: "heeyeon",
   profilePicture: "/avatars/heeyeonlee.png",
-  fullName: "Heeyon Lee",
+  fullName: "Heeyeon Lee",
   mostAssets: ["BTC", "ETH", "USDT"],
   watchlist: ["BTC", "ETH"],
   following: [],
