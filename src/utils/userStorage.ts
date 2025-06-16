@@ -37,8 +37,7 @@ export const updateUser = (updates: Partial<User>): User => {
     isUsernameSet: updates.username ? true : currentUser.isUsernameSet 
   };
   saveUserToStorage(updatedUser);
-  
-  // If username is being set, update the username set flag
+
   if (updates.username) {
     sessionStorage.setItem(USERNAME_SET_KEY, "true");
   }
