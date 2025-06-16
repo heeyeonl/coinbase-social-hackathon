@@ -46,7 +46,7 @@ const SocialPage = () => {
                 <SocialFollowingView user={userData} />
               ) : (
                 <div className="flex flex-col items-center justify-center h-full">
-                  <SocialProfileView user={userData}/>
+                  <SocialProfileView user={userData} />
                 </div>
               )
             }
