@@ -3,8 +3,13 @@ import SearchModalTabs from "./SearchModalTabs";
 import type { Tab } from "../types/tab";
 import SearchModalPeople from './SearchModalPeople';
 
-const SearchModal = () => {
-    const [activeTab, setActiveTab] = useState<string>('crypto');
+interface SearchModalProps {
+    searchValue: string;
+    defaultTab?: string;
+}
+
+const SearchModal = ({ searchValue, defaultTab = 'crypto' }: SearchModalProps) => {
+    const [activeTab, setActiveTab] = useState<string>(defaultTab);
     
     const tabs: Tab[] = [
         {
@@ -32,6 +37,7 @@ const SearchModal = () => {
         if (tab.src) {
             return (
                 <div className="p-4">
+                    {/* TODO: Filter results based on searchValue */}
                     <img 
                         src={tab.src} 
                         alt={`${tab.name} search results`}
@@ -44,7 +50,7 @@ const SearchModal = () => {
         if (tab.id === 'people') {
             return (
                 <div className="p-4">
-                    <SearchModalPeople />
+                    <SearchModalPeople searchValue={searchValue} />
                 </div>
             );
         }

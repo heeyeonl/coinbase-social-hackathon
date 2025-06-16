@@ -1,15 +1,24 @@
 import { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import SearchModal from './SearchModal';
 
 const SearchBar = () => {
     const [isFocused, setIsFocused] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
+    const isModalOpen = isFocused;
     const searchBarRef = useRef<HTMLDivElement>(null);
+    const modalRef = useRef<HTMLDivElement>(null);
+    const location = useLocation();
+    const defaultTab = location.pathname === '/social' ? 'people' : 'crypto';
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            if (searchBarRef.current && !searchBarRef.current.contains(event.target as Node)) {
-                setIsFocused(false);
+            if (searchBarRef.current?.contains(event.target as Node) || 
+                modalRef.current?.contains(event.target as Node)) {
+                return;
             }
+            setIsFocused(false);
         };
 
         if (isFocused) {
@@ -40,11 +49,18 @@ const SearchBar = () => {
                 <input 
                     type="search"
                     placeholder="Search"
-                    className="flex-grow bg-transparent border-none outline-none text-[14px] placeholder-gray-500 cursor-pointer"
+                    value={searchValue}
+                    onChange={(e) => setSearchValue(e.target.value)}
+                    className="flex-grow bg-transparent border-none outline-none text-[14px] placeholder-gray-500 cursor-text"
                     onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
                 />
             </div>
+            {
+                isModalOpen && 
+                <div ref={modalRef} className="absolute z-50 top-[72px]">
+                    <SearchModal searchValue={searchValue} defaultTab={defaultTab} />
+                </div>
+            }
         </>
     );
 };

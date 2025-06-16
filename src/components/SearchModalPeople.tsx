@@ -1,6 +1,10 @@
-const SearchModalPeople = () => {
+interface SearchModalPeopleProps {
+    searchValue: string;
+}
+
+const SearchModalPeople = ({ searchValue }: SearchModalPeopleProps) => {
     return <div>
-        Search People
+        Search People: {searchValue}
     </div>
 }
 
