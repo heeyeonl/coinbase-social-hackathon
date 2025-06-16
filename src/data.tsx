@@ -71,67 +71,67 @@ export const assets = [
     {
         id: "BTC",
         name: "Bitcoin",
-        logo: "/asset-logos/BTC.png",
+        logo: "/asset-logos/btc.png",
         href: "https://www.coinbase.com/price/bitcoin"
     },
     {
         id: "ETH",
         name: "Ethereum",
-        logo: "/asset-logos/ETH.png",
+        logo: "/asset-logos/eth.png",
         href: "https://www.coinbase.com/price/ethereum"
     },
     {
         id: "BNB",
         name: "Binance Coin",
-        logo: "/asset-logos/BNB.png",
+        logo: "/asset-logos/bnb.png",
         href: "https://www.coinbase.com/price/bnb"
     },
     {
         id: "XRP",
         name: "XRP",
-        logo: "/asset-logos/XRP.png",
+        logo: "/asset-logos/xrp.png",
         href: "https://www.coinbase.com/price/xrp"
     },
     {
         id: "USDT",
         name: "Tether",
-        logo: "/asset-logos/USDT.png",
+        logo: "/asset-logos/usdt.png",
         href: "https://www.coinbase.com/price/tether"
     },
     {
         id: "SOL",
         name: "Solana",
-        logo: "/asset-logos/SOL.png",
+        logo: "/asset-logos/sol.png",
         href: "https://www.coinbase.com/price/solana"
     },
     {
         id: "DOGE",
         name: "Dogecoin",
-        logo: "/asset-logos/DOGE.png",
+        logo: "/asset-logos/doge.png",
         href: "https://www.coinbase.com/price/dogecoin"
     },
     {
         id: "BCH",
         name: "Bitcoin Cash",
-        logo: "/asset-logos/BCH.png",
+        logo: "/asset-logos/bch.png",
         href: "https://www.coinbase.com/price/bitcoin-cash"
     },
     {
         id: "USDC",
         name: "USD Coin",
-        logo: "/asset-logos/USDC.png",
+        logo: "/asset-logos/usdc.png",
         href: "https://www.coinbase.com/price/usdc"
     },
     {
         id: "SUI",
         name: "Sui",
-        logo: "/asset-logos/SUI.png",
+        logo: "/asset-logos/sui.png",
         href: "https://www.coinbase.com/price/sui"
     },
     {
         id: "LINK",
         name: "Chainlink",
-        logo: "/asset-logos/LINK.png",
+        logo: "/asset-logos/link.png",
         href: "https://www.coinbase.com/price/chainlink"
     },
 ]
