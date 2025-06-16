@@ -6,28 +6,24 @@ import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import Switch from "@mui/material/Switch";
 
-const STORAGE_KEY = "socialProfileData";
+const STORAGE_KEY = "socialProfilePrivacy";
 
 const SocialProfileView = ({ user: initialUser }: { user: User }) => {
   const [isPrivate, setIsPrivate] = useState(() => {
-    const stored = sessionStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored).isPrivate : true;
+    if (initialUser.id === "hl") {
+      const stored = sessionStorage.getItem(STORAGE_KEY);
+      return stored ? JSON.parse(stored) : true;
+    }
+    return true;
   });
 
-  const [user, setUser] = useState<User>(() => {
-    const stored = sessionStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored).user : initialUser;
-  });
+  const [user, setUser] = useState<User>(initialUser);
 
   useEffect(() => {
-    sessionStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        user,
-        isPrivate,
-      })
-    );
-  }, [user, isPrivate]);
+    if (initialUser.id === "hl") {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(isPrivate));
+    }
+  }, [isPrivate, initialUser.id]);
 
   const handleWatchlist = (assetId: string) => {
     if (user.watchlist.includes(assetId)) {

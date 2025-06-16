@@ -3,14 +3,31 @@ import { useLocation } from 'react-router-dom';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import SearchModal from './SearchModal';
 
-const SearchBar = () => {
+interface SearchBarProps {
+    forceFocus?: boolean;
+    onFocusChange?: (isFocused: boolean) => void;
+}
+
+const SearchBar = ({ forceFocus, onFocusChange }: SearchBarProps) => {
     const [isFocused, setIsFocused] = useState(false);
     const [searchValue, setSearchValue] = useState('');
     const isModalOpen = isFocused;
     const searchBarRef = useRef<HTMLDivElement>(null);
     const modalRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
     const location = useLocation();
     const defaultTab = location.pathname === '/social' ? 'people' : 'crypto';
+
+    useEffect(() => {
+        if (forceFocus !== undefined) {
+            setIsFocused(forceFocus);
+            onFocusChange?.(forceFocus);
+            
+            if (forceFocus && inputRef.current) {
+                inputRef.current.focus();
+            }
+        }
+    }, [forceFocus, onFocusChange]);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -19,6 +36,7 @@ const SearchBar = () => {
                 return;
             }
             setIsFocused(false);
+            onFocusChange?.(false);
         };
 
         if (isFocused) {
@@ -26,9 +44,16 @@ const SearchBar = () => {
         }
 
         return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
+            if (isFocused) {
+                document.removeEventListener('mousedown', handleClickOutside);
+            }
         };
-    }, [isFocused]);
+    }, [isFocused, onFocusChange]);
+
+    const handleFocus = () => {
+        setIsFocused(true);
+        onFocusChange?.(true);
+    };
 
     return (
         <>
@@ -47,12 +72,13 @@ const SearchBar = () => {
             >
                 <SearchOutlinedIcon className={isFocused ? 'text-[var(--primary)]' : 'text-[var(--black)]'} />
                 <input 
+                    ref={inputRef}
                     type="search"
                     placeholder="Search"
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
                     className="flex-grow bg-transparent border-none outline-none text-[14px] placeholder-gray-500 cursor-text"
-                    onFocus={() => setIsFocused(true)}
+                    onFocus={handleFocus}
                 />
             </div>
             {
