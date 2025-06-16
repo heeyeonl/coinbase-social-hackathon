@@ -13,7 +13,8 @@ const SearchModalPeople = ({ searchValue, onUserSelect }: SearchModalPeopleProps
   const navigate = useNavigate();
   const { user: currentUser, setUser } = useUser();
 
-  const filteredUsers = mockUsers.filter((user) =>
+  const usersData = [...mockUsers, currentUser as User];
+  const filteredUsers = usersData.filter((user) =>
     user.fullName.toLowerCase().includes(searchValue.toLowerCase())
   );
 
@@ -57,6 +58,7 @@ const SearchModalPeople = ({ searchValue, onUserSelect }: SearchModalPeopleProps
             </div>
           </div>
           {
+            user.id !== currentUser?.id && (
             currentUser?.following.some(
               (followedUser) => followedUser.id === user.id
             ) ? (
@@ -67,7 +69,7 @@ const SearchModalPeople = ({ searchValue, onUserSelect }: SearchModalPeopleProps
               <button className="bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white px-4 py-1 rounded-full" onClick={(e) => handleFollow(e, user.id)}>
                 Follow
               </button>
-            )
+            ))
           }
         </div>
       ))}

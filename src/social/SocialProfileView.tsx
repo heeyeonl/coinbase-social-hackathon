@@ -1,14 +1,10 @@
-import { useState, useEffect } from "react";
 import type { User } from "../types/user";
 import CardContainer from "../components/CardContainer";
 import { assets } from "../data";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import Switch from "@mui/material/Switch";
 import { useUser } from "../contexts/UserContext";
 import { updateUser, updateUserWatchlist } from "../utils/userStorage";
-
-const STORAGE_KEY = "socialProfilePrivacy";
 
 const SocialProfileView = ({
   user: profileUser,
@@ -18,13 +14,6 @@ const SocialProfileView = ({
   readonly?: boolean;
 }) => {
   const { user: currentUser, setUser } = useUser();
-  const [isPrivate, setIsPrivate] = useState(() => {
-    if (profileUser.id === currentUser?.id) {
-      const stored = sessionStorage.getItem(STORAGE_KEY);
-      return stored ? JSON.parse(stored) : true;
-    }
-    return true;
-  });
 
   const handleFollow = (userId: string) => {
     if (!currentUser) return;
@@ -41,12 +30,6 @@ const SocialProfileView = ({
     } as Partial<User>);
     setUser(updatedUser);
   };
-
-  useEffect(() => {
-    if (profileUser.id === currentUser?.id) {
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(isPrivate));
-    }
-  }, [isPrivate, profileUser.id, currentUser?.id]);
 
   const handleWatchlist = (assetId: string) => {
     if (!currentUser) return;
@@ -147,33 +130,16 @@ const SocialProfileView = ({
           </div>
         </div>
 
-        {isCurrentUser ? (
-          <div className="flex items-center justify-between px-8 pb-8">
-            <div className="flex items-center gap-1">
-              <span className="font-medium">Private</span>
-              <span
-                className="text-gray-400 cursor-pointer"
-                title="Only you can see your profile when private"
-              >
-                ?
-              </span>
-            </div>
-            <Switch
-              checked={isPrivate}
-              onChange={() => setIsPrivate(!isPrivate)}
-              color="primary"
-            />
-          </div>
-        ) : (
+        {!isCurrentUser && (
           <div className="w-full flex items-center justify-between px-8 pb-8">
             {currentUser?.following.some(
               (followedUser) => followedUser.id === profileUser.id
             ) ? (
               <button
-                className={`w-full h-[40px] mt-4 font-[Coinbase Sans] rounded-full text-base bg-[var(--primary)] text-white ${
+                className={`w-full h-[40px] mt-4 font-[Coinbase Sans] rounded-full text-base bg-[var(--ui-gray)] text-[var(--ui-black)] ${
                   readonly
                     ? "cursor-default"
-                    : "cursor-pointer hover:bg-[var(--primary-hover)]"
+                    : "cursor-pointer hover:bg-[var(--ui-gray-hover)]"
                 } font-medium`}
                 onClick={() => (readonly ? null : handleFollow(profileUser.id))}
               >

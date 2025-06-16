@@ -6,6 +6,8 @@ import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined
 import QuestionMarkOutlinedIcon from '@mui/icons-material/QuestionMarkOutlined';
 import DragIndicatorOutlinedIcon from '@mui/icons-material/DragIndicatorOutlined';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useUser } from "../contexts/UserContext";
+import type { User } from "../types/user";
 
 interface TopNavigationProps {
     navItems: NavItem[];
@@ -16,6 +18,8 @@ interface TopNavigationProps {
 const TopNavigation = ({ navItems, isSearchFocused, onSearchFocusChange }: TopNavigationProps) => {
     const location = useLocation();
     const navigate = useNavigate();
+    const { user: currentUser } = useUser();
+    const userData = [...mockUsers, currentUser as User];
     const currItem = navItems.find(item => 
         item.href && (location.pathname === item.href || location.pathname.startsWith(item.href + '/'))
     );
@@ -38,7 +42,7 @@ const TopNavigation = ({ navItems, isSearchFocused, onSearchFocusChange }: TopNa
                     </button>
                 )}
                 <h1 className="font-[Coinbase Display] text-[28px] font-medium">
-                    {isViewingProfile ? mockUsers.find(user => user.id === location.pathname.split('/').pop())?.fullName : currItem?.title}
+                    {isViewingProfile ? userData.find(user => user.id === location.pathname.split('/').pop())?.fullName : currItem?.title}
                 </h1>
             </div>
             <div className="flex gap-2">

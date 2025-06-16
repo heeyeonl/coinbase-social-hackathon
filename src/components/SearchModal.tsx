@@ -38,7 +38,6 @@ const SearchModal = ({ searchValue, defaultTab = 'crypto', onUserSelect }: Searc
         if (tab.src) {
             return (
                 <div className="p-4">
-                    {/* TODO: Filter results based on searchValue */}
                     <img 
                         src={tab.src} 
                         alt={`${tab.name} search results`}
