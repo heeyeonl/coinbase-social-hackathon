@@ -1,9 +1,10 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import type { NavItem } from "../types/nav-items";
 import SearchBar from "./SearchBar";
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import QuestionMarkOutlinedIcon from '@mui/icons-material/QuestionMarkOutlined';
 import DragIndicatorOutlinedIcon from '@mui/icons-material/DragIndicatorOutlined';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 interface TopNavigationProps {
     navItems: NavItem[];
@@ -13,14 +14,32 @@ interface TopNavigationProps {
 
 const TopNavigation = ({ navItems, isSearchFocused, onSearchFocusChange }: TopNavigationProps) => {
     const location = useLocation();
-    const currItem = navItems.find(item => item.href === location.pathname);
+    const navigate = useNavigate();
+    const currItem = navItems.find(item => 
+        item.href && (location.pathname === item.href || location.pathname.startsWith(item.href + '/'))
+    );
+    const isViewingProfile = location.pathname.startsWith('/social/profile/');
     const iconClass = "flex justify-center items-center bg-[var(--ui-gray)] rounded-full cursor-pointer w-[42px] h-[42px] hover:bg-[var(--ui-gray-hover)]";
+
+    const handleBackClick = () => {
+        navigate('/social');
+    };
 
     return (
         <div className="flex justify-between items-center h-[75px] border-b-[1px] px-8 py-4">
-            <h1 className="font-[Coinbase Display] text-[28px] font-medium">
-                {currItem?.title}
-            </h1>
+            <div className="flex items-center gap-2">
+                {isViewingProfile && (
+                    <button 
+                        onClick={handleBackClick}
+                        className="flex items-center justify-center w-[42px] h-[42px] rounded-full hover:bg-[var(--hover)]"
+                    >
+                        <ArrowBackIcon />
+                    </button>
+                )}
+                <h1 className="font-[Coinbase Display] text-[28px] font-medium">
+                    {currItem?.title}
+                </h1>
+            </div>
             <div className="flex gap-2">
                 <SearchBar forceFocus={isSearchFocused} onFocusChange={onSearchFocusChange} />
                 <div className={iconClass}>

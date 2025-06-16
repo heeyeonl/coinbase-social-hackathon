@@ -6,4 +6,5 @@ export type User = {
     username?: string;
     profilePicture?: string;
     following: User[];
+    isUsernameSet: boolean;
 }

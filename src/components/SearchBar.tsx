@@ -16,7 +16,7 @@ const SearchBar = ({ forceFocus, onFocusChange }: SearchBarProps) => {
     const modalRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const location = useLocation();
-    const defaultTab = location.pathname === '/social' ? 'people' : 'crypto';
+    const defaultTab = location.pathname === '/social' || location.pathname.startsWith('/social/profile/') ? 'people' : 'crypto';
 
     useEffect(() => {
         if (forceFocus !== undefined) {
@@ -55,6 +55,12 @@ const SearchBar = ({ forceFocus, onFocusChange }: SearchBarProps) => {
         onFocusChange?.(true);
     };
 
+    const handleUserSelect = () => {
+        setIsFocused(false);
+        setSearchValue('');
+        onFocusChange?.(false);
+    };
+
     return (
         <>
             {isFocused && (
@@ -84,7 +90,11 @@ const SearchBar = ({ forceFocus, onFocusChange }: SearchBarProps) => {
             {
                 isModalOpen && 
                 <div ref={modalRef} className="absolute z-50 top-[72px]">
-                    <SearchModal searchValue={searchValue} defaultTab={defaultTab} />
+                    <SearchModal 
+                        searchValue={searchValue} 
+                        defaultTab={defaultTab} 
+                        onUserSelect={handleUserSelect}
+                    />
                 </div>
             }
         </>

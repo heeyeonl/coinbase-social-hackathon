@@ -6,9 +6,10 @@ import SearchModalPeople from './SearchModalPeople';
 interface SearchModalProps {
     searchValue: string;
     defaultTab?: string;
+    onUserSelect?: () => void;
 }
 
-const SearchModal = ({ searchValue, defaultTab = 'crypto' }: SearchModalProps) => {
+const SearchModal = ({ searchValue, defaultTab = 'crypto', onUserSelect }: SearchModalProps) => {
     const [activeTab, setActiveTab] = useState<string>(defaultTab);
     
     const tabs: Tab[] = [
@@ -50,7 +51,7 @@ const SearchModal = ({ searchValue, defaultTab = 'crypto' }: SearchModalProps) =
         if (tab.id === 'people') {
             return (
                 <div className="p-4">
-                    <SearchModalPeople searchValue={searchValue} />
+                    <SearchModalPeople searchValue={searchValue} onUserSelect={onUserSelect} />
                 </div>
             );
         }

@@ -154,6 +154,7 @@ export const mockUsers: User[] = [
         following: [],
         profilePicture: "/profile.svg",
         username: "johndoe",
+        isUsernameSet: true,
     },
     {
         id: "1",
@@ -163,6 +164,7 @@ export const mockUsers: User[] = [
         following: [],
         profilePicture: "/profile.svg",
         username: "janedoe",
+        isUsernameSet: true,
     },
     {
         id: "2",
@@ -172,6 +174,7 @@ export const mockUsers: User[] = [
         following: [],
         profilePicture: "/profile.svg",
         username: "alicesmith",
+        isUsernameSet: true,
     },
     {
         id: "3",
@@ -181,6 +184,7 @@ export const mockUsers: User[] = [
         following: [],
         profilePicture: "/profile.svg",
         username: "bobjohnson",
+        isUsernameSet: true,
     },
     {
         id: "4",
@@ -190,6 +194,7 @@ export const mockUsers: User[] = [
         following: [],
         profilePicture: "/profile.svg",
         username: "carolwhite",
+        isUsernameSet: true,
     },
     {
         id: "5",
@@ -199,6 +204,7 @@ export const mockUsers: User[] = [
         following: [],
         profilePicture: "/profile.svg",
         username: "davidbrown",
+        isUsernameSet: true,
     },
     {
         id: "6",
@@ -208,6 +214,7 @@ export const mockUsers: User[] = [
         following: [],
         profilePicture: "/profile.svg",
         username: "emmadavis",
+        isUsernameSet: true,
     },
     {
         id: "7",
@@ -217,6 +224,7 @@ export const mockUsers: User[] = [
         following: [],
         profilePicture: "/profile.svg",
         username: "frankmiller",
+        isUsernameSet: true,
     },
     {
         id: "8",
@@ -226,6 +234,7 @@ export const mockUsers: User[] = [
         following: [],
         profilePicture: "/profile.svg",
         username: "gracewilson",
+        isUsernameSet: true,
     },
     {
         id: "9",
@@ -235,5 +244,6 @@ export const mockUsers: User[] = [
         following: [],
         profilePicture: "/profile.svg",
         username: "henrytaylor",
+        isUsernameSet: true,
     }
 ];

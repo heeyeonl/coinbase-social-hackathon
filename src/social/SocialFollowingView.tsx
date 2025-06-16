@@ -1,7 +1,7 @@
 import type { User } from "../types/user";
 import { useSearch } from "../components/Layout";
 
-const SocialFollowingView = ({ user }: { user: User }) => {
+const SocialFollowingView = ({ following }: { following: User[] }) => {
   const { setSearchFocused } = useSearch();
 
   const handleSearchClick = () => {
@@ -10,10 +10,10 @@ const SocialFollowingView = ({ user }: { user: User }) => {
 
   return (
     <div className="h-full">
-      {user.following.length > 0 ? (
+      {following.length > 0 ? (
         <div>
-          {user.following.map((following) => {
-            return <div key={following.id}>{following.fullName}</div>;
+          {following.map((user) => {
+            return <div key={user.id}>{user.fullName}</div>;
           })}
         </div>
       ) : (

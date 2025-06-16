@@ -5,35 +5,63 @@ import { assets } from "../data";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import Switch from "@mui/material/Switch";
+import { useUser } from "../contexts/UserContext";
+import { updateUserWatchlist } from "../utils/userStorage";
 
 const STORAGE_KEY = "socialProfilePrivacy";
 
-const SocialProfileView = ({ user: initialUser }: { user: User }) => {
+const SocialProfileView = ({ user: profileUser }: { user: User }) => {
+  const { user: currentUser, setUser } = useUser();
   const [isPrivate, setIsPrivate] = useState(() => {
-    if (initialUser.id === "hl") {
+    if (profileUser.id === currentUser?.id) {
       const stored = sessionStorage.getItem(STORAGE_KEY);
       return stored ? JSON.parse(stored) : true;
     }
     return true;
   });
 
-  const [user, setUser] = useState<User>(initialUser);
-
   useEffect(() => {
-    if (initialUser.id === "hl") {
+    if (profileUser.id === currentUser?.id) {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(isPrivate));
     }
-  }, [isPrivate, initialUser.id]);
+  }, [isPrivate, profileUser.id, currentUser?.id]);
 
   const handleWatchlist = (assetId: string) => {
-    if (user.watchlist.includes(assetId)) {
-      setUser({
-        ...user,
-        watchlist: user.watchlist.filter((id) => id !== assetId),
-      });
-    } else {
-      setUser({ ...user, watchlist: [...user.watchlist, assetId] });
+    if (!currentUser) return;
+    
+    try {
+      const updatedUser = updateUserWatchlist(assetId);
+      setUser(updatedUser);
+    } catch (error) {
+      console.error("Error updating watchlist:", error);
     }
+  };
+
+  const isCurrentUser = profileUser.id === currentUser?.id;
+  const user = isCurrentUser ? currentUser : profileUser;
+
+  const renderWatchlistButton = (assetId: string) => {
+    if (!currentUser) return null;
+
+    const isInWatchlist = currentUser.watchlist.includes(assetId);
+    
+    return isInWatchlist ? (
+      <StarIcon
+        className="w-8 h-8 text-[var(--primary)] rounded-full p-1 cursor-pointer"
+        onClick={(e) => {
+          e.stopPropagation();
+          handleWatchlist(assetId);
+        }}
+      />
+    ) : (
+      <StarBorderIcon
+        className="w-8 h-8 text-gray-400 rounded-full p-1 cursor-pointer"
+        onClick={(e) => {
+          e.stopPropagation();
+          handleWatchlist(assetId);
+        }}
+      />
+    );
   };
 
   return (
@@ -51,9 +79,11 @@ const SocialProfileView = ({ user: initialUser }: { user: User }) => {
               <p className="text-sm text-gray-500">@ {user.username}</p>
             </div>
           </div>
-          <button className="flex items-center gap-1 px-4 py-1 rounded-full bg-[var(--ui-gray)] hover:bg-[var(--ui-gray-hover)] text-sm">
-            Edit
-          </button>
+          {isCurrentUser && (
+            <button className="flex items-center gap-1 px-4 py-1 rounded-full bg-[var(--ui-gray)] hover:bg-[var(--ui-gray-hover)] text-sm">
+              Edit
+            </button>
+          )}
         </div>
 
         <div className="mb-2">
@@ -83,23 +113,7 @@ const SocialProfileView = ({ user: initialUser }: { user: User }) => {
                     <p className="text-[var(--primary)] text-sm font-medium">
                       Buy
                     </p>
-                    {user.watchlist.includes(asset.id) ? (
-                      <StarIcon
-                        className="w-8 h-8 text-[var(--primary)] rounded-full p-1 cursor-pointer"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleWatchlist(asset.id);
-                        }}
-                      />
-                    ) : (
-                      <StarBorderIcon
-                        className="w-8 h-8 text-gray-400 rounded-full p-1 cursor-pointer"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleWatchlist(asset.id);
-                        }}
-                      />
-                    )}
+                    {renderWatchlistButton(asset.id)}
                   </div>
                 </div>
               );
@@ -107,7 +121,7 @@ const SocialProfileView = ({ user: initialUser }: { user: User }) => {
           </div>
         </div>
 
-        {user.id === initialUser.id && (
+        {isCurrentUser && (
           <div className="flex items-center justify-between px-8 pb-8">
             <div className="flex items-center gap-1">
               <span className="font-medium">Private</span>

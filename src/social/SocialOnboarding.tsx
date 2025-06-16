@@ -1,16 +1,19 @@
 import { useState } from "react";
-import type { User } from "../types/user";
 import CardContainer from "../components/CardContainer";
-import { saveUserToStorage } from "../utils/userStorage";
+import { useUser } from "../contexts/UserContext";
+import { useNavigate } from "react-router-dom";
+import { updateUser } from "../utils/userStorage";
 
-const SocialOnboarding = ({user}: {user: User}) => {
+const SocialOnboarding = () => {
+  const { setUser } = useUser();
   const [username, setUsername] = useState<string>("");
+  const navigate = useNavigate();
 
   const handleContinue = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    sessionStorage.setItem("isUsernameSet", "true");
-    saveUserToStorage({...user, username: username});
-    window.location.href = "/social";
+    const updatedUser = updateUser({ username });
+    setUser(updatedUser);
+    navigate("/social");
   };
 
   return (
