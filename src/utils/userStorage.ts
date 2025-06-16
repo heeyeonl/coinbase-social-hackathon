@@ -4,7 +4,7 @@ const USER_STORAGE_KEY = "userData";
 const USERNAME_SET_KEY = "isUsernameSet";
 
 const DEFAULT_USER: User = {
-  id: "1",
+  id: "hl",
   username: "heeyeon",
   profilePicture: "/profile.svg",
   fullName: "Heeyon Lee",

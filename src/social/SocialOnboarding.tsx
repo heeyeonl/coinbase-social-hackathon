@@ -9,7 +9,7 @@ const SocialOnboarding = () => {
   const [username, setUsername] = useState<string>("");
   const navigate = useNavigate();
 
-  const handleContinue = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleContinue = (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLInputElement>) => {
     e.preventDefault();
     const updatedUser = updateUser({ username });
     setUser(updatedUser);
@@ -38,6 +38,11 @@ const SocialOnboarding = () => {
             placeholder="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+              if (e.key === 'Enter' && username !== '') {
+                handleContinue(e);
+              }
+            }}
           ></input>
         </div>
         <button
