@@ -21,7 +21,7 @@ const Navigation = ({ navItems }: { navItems: NavItem[] }) => {
               key={id}
               to={href || "/"}
               className={({ isActive }) => `
-                                flex items-center gap-[16px] p-[16px] xl:w-full text-[16px]
+                                flex items-center justify-between  gap-[16px] p-[16px] xl:w-full text-[16px]
                                 hover:bg-[var(--hover)] rounded-full transition-colors
                                 ${
                                   isActive
@@ -30,10 +30,13 @@ const Navigation = ({ navItems }: { navItems: NavItem[] }) => {
                                 }
                             `}
             >
-              <span>{isActive ? iconFilled : icon}</span>
-              <span className="hidden xl:block font-medium">
-                {title}
-              </span>
+              <div className="flex items-center gap-[16px]">
+                <span>{isActive ? iconFilled : icon}</span>
+                <span className="hidden xl:block font-medium">
+                  {title}
+                </span>
+              </div>
+              {id === "social" && <span className="hidden xl:block bg-[var(--primary)] text-white text-[10px] py-1 px-2 rounded-full">New</span>}
             </NavLink>
           );
         })}

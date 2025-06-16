@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Navigation from './Navigation';
 import { navItems } from '../data';
+import TopNavigation from './TopNavigation';
 
 const Layout = () => {
     return (
@@ -9,6 +10,7 @@ const Layout = () => {
                 <Navigation navItems={navItems} />
             </aside>
             <main className="flex-1">
+                <TopNavigation navItems={navItems}/>
                 <Outlet />
             </main>
         </div>

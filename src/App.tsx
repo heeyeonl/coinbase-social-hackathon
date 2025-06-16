@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import DefaultPage from './DefaultPage';
+import SocialPage from './SocialPage';
 
 // Placeholder components for each route
 const Home = () => <DefaultPage />;
@@ -9,7 +10,7 @@ const Transactions = () => <DefaultPage />;
 const Explore = () => <DefaultPage />;
 const Derivatives = () => <DefaultPage />;
 const Taxes = () => <DefaultPage />;
-const Social = () => <div>Social Page</div>;
+const Social = () => <SocialPage />;
 const More = () => <DefaultPage />;
 
 function App() {
