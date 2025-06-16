@@ -13,7 +13,7 @@ const SearchModalPeople = ({ searchValue, onUserSelect }: SearchModalPeopleProps
   const navigate = useNavigate();
   const { user: currentUser, setUser } = useUser();
 
-  const usersData = [...mockUsers, currentUser as User];
+  const usersData = [...mockUsers, currentUser as User].sort((a, b) => a.fullName.localeCompare(b.fullName));
   const filteredUsers = usersData.filter((user) =>
     user.fullName.toLowerCase().includes(searchValue.toLowerCase())
   );
