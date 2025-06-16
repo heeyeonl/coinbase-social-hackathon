@@ -1,19 +1,24 @@
-import type { User } from "../types/user";
+
 import { useSearch } from "../components/Layout";
+import { useUser } from "../contexts/UserContext";
+import { mockUsers } from "../data";
+import type { User } from "../types/user";
+import SocialFollowingCard from "./SocialFollowingCard";
 
-const SocialFollowingView = ({ following }: { following: User[] }) => {
+const SocialFollowingView = () => {
   const { setSearchFocused } = useSearch();
-
+  const { user: currentUser } = useUser();
+  const followingUsers: User[] = mockUsers.filter((user) => currentUser?.following.some((followingUser) => followingUser.id === user.id));
   const handleSearchClick = () => {
     setSearchFocused(true);
   };
 
   return (
     <div className="h-full">
-      {following.length > 0 ? (
-        <div>
-          {following.map((user) => {
-            return <div key={user.id}>{user.fullName}</div>;
+      {followingUsers.length > 0 ? (
+        <div className="flex flex-wrap gap-4 pt-8">
+          {followingUsers.map((user) => {
+            return <SocialFollowingCard key={`${user.id}-${user.username}`} displayUser={user} />
           })}
         </div>
       ) : (

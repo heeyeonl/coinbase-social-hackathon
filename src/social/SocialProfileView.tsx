@@ -6,7 +6,7 @@ import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import Switch from "@mui/material/Switch";
 import { useUser } from "../contexts/UserContext";
-import { updateUserWatchlist } from "../utils/userStorage";
+import { updateUser, updateUserWatchlist } from "../utils/userStorage";
 
 const STORAGE_KEY = "socialProfilePrivacy";
 
@@ -20,6 +20,18 @@ const SocialProfileView = ({ user: profileUser }: { user: User }) => {
     return true;
   });
 
+  const handleFollow = (userId: string) => {
+    if (!currentUser) return;
+
+    const isFollowing = currentUser.following.some(user => user.id === userId);
+    const updatedFollowing = isFollowing
+      ? currentUser.following.filter(user => user.id !== userId)
+      : [...currentUser.following, { id: userId } as User];
+
+    const updatedUser = updateUser({ following: updatedFollowing } as Partial<User>);
+    setUser(updatedUser);
+  };
+
   useEffect(() => {
     if (profileUser.id === currentUser?.id) {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(isPrivate));
@@ -28,7 +40,7 @@ const SocialProfileView = ({ user: profileUser }: { user: User }) => {
 
   const handleWatchlist = (assetId: string) => {
     if (!currentUser) return;
-    
+
     try {
       const updatedUser = updateUserWatchlist(assetId);
       setUser(updatedUser);
@@ -44,7 +56,7 @@ const SocialProfileView = ({ user: profileUser }: { user: User }) => {
     if (!currentUser) return null;
 
     const isInWatchlist = currentUser.watchlist.includes(assetId);
-    
+
     return isInWatchlist ? (
       <StarIcon
         className="w-8 h-8 text-[var(--primary)] rounded-full p-1 cursor-pointer"
@@ -121,7 +133,7 @@ const SocialProfileView = ({ user: profileUser }: { user: User }) => {
           </div>
         </div>
 
-        {isCurrentUser && (
+        {isCurrentUser ? (
           <div className="flex items-center justify-between px-8 pb-8">
             <div className="flex items-center gap-1">
               <span className="font-medium">Private</span>
@@ -137,6 +149,20 @@ const SocialProfileView = ({ user: profileUser }: { user: User }) => {
               onChange={() => setIsPrivate(!isPrivate)}
               color="primary"
             />
+          </div>
+        ) : (
+          <div className="w-full flex items-center justify-between px-8 pb-8">
+            {currentUser?.following.some(
+              (followedUser) => followedUser.id === profileUser.id
+            ) ? (
+              <button className="w-full h-[40px] mt-4 font-[Coinbase Sans] rounded-full text-base bg-[var(--ui-gray)] hover:bg-[var(--ui-gray-hover)] text-[var(--ui-black)] font-medium" onClick={() => handleFollow(profileUser.id)}>
+                Following
+              </button>
+            ) : (
+              <button className="w-full h-[40px] mt-4 font-[Coinbase Sans] rounded-full text-base bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-medium" onClick={() => handleFollow(profileUser.id)}>
+                Follow
+              </button>
+            )}
           </div>
         )}
       </CardContainer>

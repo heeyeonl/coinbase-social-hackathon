@@ -38,7 +38,7 @@ const SocialPage = ({user: profileUser}: {user: User}) => {
               <SocialProfileView user={profileUser} />
             </div>
           ) : selectedTab === "Following" ? (
-            <SocialFollowingView following={currentUser.following} />
+            <SocialFollowingView />
           ) : (
             <div className="flex flex-col items-center justify-center h-full">
               <SocialProfileView user={currentUser} />
