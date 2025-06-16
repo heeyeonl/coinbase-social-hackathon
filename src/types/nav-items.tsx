@@ -6,4 +6,5 @@ export type NavItem = {
     icon: ReactNode;
     iconFilled: ReactNode;
     href?: string;
+    isNew?: boolean;
 };

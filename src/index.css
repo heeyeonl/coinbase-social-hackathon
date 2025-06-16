@@ -6,4 +6,6 @@
   --primary: #0052FF;
   --hover: rgb(245,248,255);
   --ui-black: #0a0b0d;
+  --ui-gray: #eef0f3;
+  --ui-gray-hover: #dcdee1;
 }

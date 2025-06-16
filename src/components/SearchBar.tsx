@@ -31,8 +31,8 @@ const SearchBar = () => {
             <div 
                 ref={searchBarRef}
                 className={`
-                    relative z-50 flex items-center justify-start h-[40px] rounded-full bg-[#EEF0F3] px-4 gap-4
-                    transition-all duration-300 ease-in-out border hover:bg-[#dcdee1] cursor-pointer
+                    relative z-50 flex items-center justify-start h-[40px] rounded-full bg-[var(--ui-gray)] px-4 gap-4
+                    transition-all duration-300 ease-in-out border hover:bg-[var(--ui-gray-hover)] cursor-pointer
                     ${isFocused ? 'w-[620px] border-[var(--primary)] border-2' : 'w-[320px] border-transparent'}
                 `}
             >

@@ -14,7 +14,7 @@ const Navigation = ({ navItems }: { navItems: NavItem[] }) => {
         </NavLink>
       </div>
       <nav className="flex flex-col w-full justify-center items-center xl:items-start gap-1 font-[Coinbase Sans]">
-        {navItems.map(({ id, title, icon, iconFilled, href }) => {
+        {navItems.map(({ id, title, icon, iconFilled, href, isNew }) => {
           const isActive = location.pathname === href;
           return (
             <NavLink
@@ -36,7 +36,7 @@ const Navigation = ({ navItems }: { navItems: NavItem[] }) => {
                   {title}
                 </span>
               </div>
-              {id === "social" && <span className="hidden xl:block bg-[var(--primary)] text-white text-[10px] py-1 px-2 rounded-full">New</span>}
+              {isNew && <span className="hidden xl:block bg-[var(--primary)] text-white text-[10px] px-[8px] rounded-full">New</span>}
             </NavLink>
           );
         })}

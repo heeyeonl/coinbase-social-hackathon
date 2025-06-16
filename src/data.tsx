@@ -63,7 +63,8 @@ export const navItems: NavItem[] = [
         title: "Social",
         icon: <GroupsOutlinedIcon />,
         iconFilled: <GroupsIcon />,
-        href: "/social"
+        href: "/social",
+        isNew: true,
     },
     {
         id: "more",

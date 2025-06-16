@@ -10,10 +10,10 @@ const TopNavigation = ({ navItems } : {
 }) => {
     const location = useLocation();
     const currItem = navItems.find(item => item.href === location.pathname);
-    const iconClass = "flex justify-center items-center bg-[#EEF0F3] rounded-full cursor-pointer w-[42px] h-[42px] hover:bg-[#dcdee1]";
+    const iconClass = "flex justify-center items-center bg-[var(--ui-gray)] rounded-full cursor-pointer w-[42px] h-[42px] hover:bg-[var(--ui-gray-hover)]";
 
     return <div className="flex justify-between items-center h-[75px] border-b-[1px] px-8 py-4">
-        <h1 className="font-[Coinbase Display] text-[28px] font-semibold">
+        <h1 className="font-[Coinbase Display] text-[28px] font-medium">
             {currItem?.title}
         </h1>
         <div className="flex gap-2">
