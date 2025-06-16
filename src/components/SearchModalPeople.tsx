@@ -33,7 +33,6 @@ const SearchModalPeople = ({ searchValue, onUserSelect }: SearchModalPeopleProps
 
     const updatedUser = updateUser({ following: updatedFollowing } as Partial<User>);
     setUser(updatedUser);
-    onUserSelect?.();
   };
 
   return (

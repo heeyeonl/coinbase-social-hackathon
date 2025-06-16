@@ -10,7 +10,6 @@ const Assets = () => <DefaultPage />;
 const Transactions = () => <DefaultPage />;
 const Explore = () => <DefaultPage />;
 const Derivatives = () => <DefaultPage />;
-const Taxes = () => <DefaultPage />;
 const Social = () => {
     const { profileId } = useParams();
     const { user: currentUser } = useUser();
@@ -41,7 +40,6 @@ function App() {
                         <Route path="transactions" element={<Transactions />} />
                         <Route path="explore" element={<Explore />} />
                         <Route path="explore-future" element={<Derivatives />} />
-                        <Route path="taxes" element={<Taxes />} />
                         <Route path="social" element={<Social />} />
                         <Route path="social/profile/:profileId" element={<Social />} />
                         <Route path="more" element={<More />} />

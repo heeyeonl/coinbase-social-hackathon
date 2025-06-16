@@ -23,7 +23,7 @@ const SocialOnboarding = () => {
           Create your social profile
         </p>
         <div className="flex flex-col justify-center items-center py-10 gap-5">
-          <img width={100} height={100} src="/profile.svg" alt="profile" />
+          <img width={100} height={100} className="rounded-full" src="/avatars/heeyeonlee.png" alt="profile" />
           <p className="font-[Coinbase Display] text-2xl font-medium">
             Heeyeon Lee
           </p>

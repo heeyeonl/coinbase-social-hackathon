@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { mockUsers } from "../data";
 import type { NavItem } from "../types/nav-items";
 import SearchBar from "./SearchBar";
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
@@ -37,7 +38,7 @@ const TopNavigation = ({ navItems, isSearchFocused, onSearchFocusChange }: TopNa
                     </button>
                 )}
                 <h1 className="font-[Coinbase Display] text-[28px] font-medium">
-                    {currItem?.title}
+                    {isViewingProfile ? mockUsers.find(user => user.id === location.pathname.split('/').pop())?.fullName : currItem?.title}
                 </h1>
             </div>
             <div className="flex gap-2">
@@ -51,7 +52,7 @@ const TopNavigation = ({ navItems, isSearchFocused, onSearchFocusChange }: TopNa
                 <div className={iconClass}>
                     <DragIndicatorOutlinedIcon/>
                 </div>
-                <div className="w-[42px] h-[42px] flex justify-center items-center bg-[#007bb3] hover:bg-[#0485bf] rounded-full cursor-pointer text-white font-[Coinbase Sans]">H</div>
+                <img src="/avatars/heeyeonlee.png" className="w-[42px] h-[42px] flex justify-center items-center bg-[#007bb3] hover:bg-[#0485bf] rounded-full cursor-pointer text-white font-[Coinbase Sans]" />
             </div>
         </div>
     );

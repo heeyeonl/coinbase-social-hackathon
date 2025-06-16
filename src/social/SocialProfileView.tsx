@@ -10,7 +10,13 @@ import { updateUser, updateUserWatchlist } from "../utils/userStorage";
 
 const STORAGE_KEY = "socialProfilePrivacy";
 
-const SocialProfileView = ({ user: profileUser }: { user: User }) => {
+const SocialProfileView = ({
+  user: profileUser,
+  readonly,
+}: {
+  user: User;
+  readonly?: boolean;
+}) => {
   const { user: currentUser, setUser } = useUser();
   const [isPrivate, setIsPrivate] = useState(() => {
     if (profileUser.id === currentUser?.id) {
@@ -23,12 +29,16 @@ const SocialProfileView = ({ user: profileUser }: { user: User }) => {
   const handleFollow = (userId: string) => {
     if (!currentUser) return;
 
-    const isFollowing = currentUser.following.some(user => user.id === userId);
+    const isFollowing = currentUser.following.some(
+      (user) => user.id === userId
+    );
     const updatedFollowing = isFollowing
-      ? currentUser.following.filter(user => user.id !== userId)
+      ? currentUser.following.filter((user) => user.id !== userId)
       : [...currentUser.following, { id: userId } as User];
 
-    const updatedUser = updateUser({ following: updatedFollowing } as Partial<User>);
+    const updatedUser = updateUser({
+      following: updatedFollowing,
+    } as Partial<User>);
     setUser(updatedUser);
   };
 
@@ -59,18 +69,22 @@ const SocialProfileView = ({ user: profileUser }: { user: User }) => {
 
     return isInWatchlist ? (
       <StarIcon
-        className="w-8 h-8 text-[var(--primary)] rounded-full p-1 cursor-pointer"
+        className={`w-8 h-8 text-[var(--primary)] rounded-full p-1 ${readonly ? "cursor-default" : "cursor-pointer"}`}
         onClick={(e) => {
           e.stopPropagation();
-          handleWatchlist(assetId);
+          if (!readonly) {
+            handleWatchlist(assetId);
+          }
         }}
       />
     ) : (
       <StarBorderIcon
-        className="w-8 h-8 text-gray-400 rounded-full p-1 cursor-pointer"
+        className={`w-8 h-8 text-gray-400 rounded-full p-1 ${readonly ? "cursor-default" : "cursor-pointer"}`}
         onClick={(e) => {
           e.stopPropagation();
-          handleWatchlist(assetId);
+          if (!readonly) {
+            handleWatchlist(assetId);
+          }
         }}
       />
     );
@@ -107,8 +121,8 @@ const SocialProfileView = ({ user: profileUser }: { user: User }) => {
               return (
                 <div
                   key={asset.id}
-                  className="flex items-center justify-between py-3 hover:bg-[var(--hover)] cursor-pointer"
-                  onClick={() => window.open(asset.href, "_blank")}
+                  className={`flex items-center justify-between py-3 ${readonly ? "cursor-default" : "hover:bg-[var(--ui-gray)] cursor-pointer"}`}
+                  onClick={() => !readonly ? window.open(asset.href, "_blank") : null}
                 >
                   <div className="flex items-center gap-2 pl-8">
                     <img
@@ -155,11 +169,25 @@ const SocialProfileView = ({ user: profileUser }: { user: User }) => {
             {currentUser?.following.some(
               (followedUser) => followedUser.id === profileUser.id
             ) ? (
-              <button className="w-full h-[40px] mt-4 font-[Coinbase Sans] rounded-full text-base bg-[var(--ui-gray)] hover:bg-[var(--ui-gray-hover)] text-[var(--ui-black)] font-medium" onClick={() => handleFollow(profileUser.id)}>
+              <button
+                className={`w-full h-[40px] mt-4 font-[Coinbase Sans] rounded-full text-base bg-[var(--primary)] text-white ${
+                  readonly
+                    ? "cursor-default"
+                    : "cursor-pointer hover:bg-[var(--primary-hover)]"
+                } font-medium`}
+                onClick={() => (readonly ? null : handleFollow(profileUser.id))}
+              >
                 Following
               </button>
             ) : (
-              <button className="w-full h-[40px] mt-4 font-[Coinbase Sans] rounded-full text-base bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-medium" onClick={() => handleFollow(profileUser.id)}>
+              <button
+                className={`w-full h-[40px] mt-4 font-[Coinbase Sans] rounded-full text-base bg-[var(--primary)] text-white ${
+                  readonly
+                    ? "cursor-default"
+                    : "cursor-pointer hover:bg-[var(--primary-hover)]"
+                } font-medium`}
+                onClick={() => (readonly ? null : handleFollow(profileUser.id))}
+              >
                 Follow
               </button>
             )}

@@ -10,8 +10,6 @@ import ExploreOutlinedIcon from '@mui/icons-material/ExploreOutlined';
 import ExploreIcon from '@mui/icons-material/Explore';
 import FastForwardOutlinedIcon from '@mui/icons-material/FastForwardOutlined';
 import FastForwardIcon from '@mui/icons-material/FastForward';
-import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
-import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import GroupsIcon from '@mui/icons-material/Groups';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -53,13 +51,6 @@ export const navItems: NavItem[] = [
         href: "/explore-future"
     },
     {
-        id: "taxes",
-        title: "Taxes",
-        icon: <ReceiptLongOutlinedIcon />,
-        iconFilled: <ReceiptLongIcon />,
-        href: "/taxes"
-    },
-    {
         id: "social",
         title: "Social",
         icon: <GroupsOutlinedIcon />,
@@ -93,7 +84,7 @@ export const assets = [
         id: "BNB",
         name: "Binance Coin",
         logo: "/asset-logos/BNB.png",
-        href: "https://www.coinbase.com/price/binance-coin"
+        href: "https://www.coinbase.com/price/bnb"
     },
     {
         id: "XRP",
@@ -129,7 +120,7 @@ export const assets = [
         id: "USDC",
         name: "USD Coin",
         logo: "/asset-logos/USDC.png",
-        href: "https://www.coinbase.com/price/usd-coin"
+        href: "https://www.coinbase.com/price/usdc"
     },
     {
         id: "SUI",
@@ -152,7 +143,7 @@ export const mockUsers: User[] = [
         watchlist: ["BTC", "SOL", "BNB"],
         mostAssets: ["BTC", "SOL", "BNB"],
         following: [],
-        profilePicture: "/profile.svg",
+        profilePicture: "/avatars/johndoe.png",
         username: "johndoe",
         isUsernameSet: true,
     },
@@ -162,7 +153,7 @@ export const mockUsers: User[] = [
         watchlist: ["BTC", "SOL", "BNB"],
         mostAssets: ["BTC", "SOL", "BNB"],
         following: [],
-        profilePicture: "/profile.svg",
+        profilePicture: "/avatars/janedoe.png",
         username: "janedoe",
         isUsernameSet: true,
     },
@@ -182,7 +173,7 @@ export const mockUsers: User[] = [
         watchlist: ["XRP", "DOGE", "BCH"],
         mostAssets: ["XRP", "DOGE", "BCH"],
         following: [],
-        profilePicture: "/profile.svg",
+        profilePicture: "/avatars/bobjohnson.png",
         username: "bobjohnson",
         isUsernameSet: true,
     },
@@ -202,7 +193,7 @@ export const mockUsers: User[] = [
         watchlist: ["BTC", "ETH", "SOL"],
         mostAssets: ["BTC", "ETH", "SOL"],
         following: [],
-        profilePicture: "/profile.svg",
+        profilePicture: "/avatars/davidbrown.png",
         username: "davidbrown",
         isUsernameSet: true,
     },
@@ -212,7 +203,7 @@ export const mockUsers: User[] = [
         watchlist: ["LINK", "USDC", "SUI"],
         mostAssets: ["LINK", "USDC", "SUI"],
         following: [],
-        profilePicture: "/profile.svg",
+        profilePicture: "/avatars/emmadavis.png",
         username: "emmadavis",
         isUsernameSet: true,
     },
@@ -222,7 +213,7 @@ export const mockUsers: User[] = [
         watchlist: ["DOGE", "BCH", "XRP"],
         mostAssets: ["DOGE", "BCH", "XRP"],
         following: [],
-        profilePicture: "/profile.svg",
+        profilePicture: "/avatars/frankmiller.png",
         username: "frankmiller",
         isUsernameSet: true,
     },
@@ -242,7 +233,7 @@ export const mockUsers: User[] = [
         watchlist: ["SOL", "BTC", "LINK"],
         mostAssets: ["SOL", "BTC", "LINK"],
         following: [],
-        profilePicture: "/profile.svg",
+        profilePicture: "/avatars/henrytaylor.png",
         username: "henrytaylor",
         isUsernameSet: true,
     }

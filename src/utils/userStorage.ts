@@ -6,7 +6,7 @@ const USERNAME_SET_KEY = "isUsernameSet";
 const DEFAULT_USER: User = {
   id: "hl",
   username: "heeyeon",
-  profilePicture: "/profile.svg",
+  profilePicture: "/avatars/heeyeonlee.png",
   fullName: "Heeyon Lee",
   mostAssets: ["BTC", "ETH", "USDT"],
   watchlist: ["BTC"],

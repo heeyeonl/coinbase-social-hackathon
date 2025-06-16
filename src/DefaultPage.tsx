@@ -7,7 +7,6 @@ const DefaultPage = () => {
     const isTransactions = path === "/transactions";
     const isExplore = path === "/explore";
     const isDerivatives = path === "/explore-future";
-    const isTaxes = path === "/taxes";
     const isMore = path === "/more";
 
     if (isHome) {
@@ -20,12 +19,10 @@ const DefaultPage = () => {
         return <img src="/explore.png" alt="explore image" />
     } else if (isDerivatives) { 
         return <img src="/derivatives.png" alt="derivatives image" />
-    } else if (isTaxes) {
-        return <div className="flex flex-col items-center justify-center h-full font-[Coinbase Sans] text-xl">Taxes</div>
     } else if (isMore) {
-        return <div className="flex flex-col items-center justify-center h-full font-[Coinbase Sans] text-xl">More</div>
+        return <div className="p-8 h-full"><div className="bg-[var(--ui-gray)] w-full h-full"></div></div>
     }
-    return <img src="/main.png" alt="main image" />
+    return <img src="/main.png" alt="default image" />
 }
 
 export default DefaultPage;

@@ -34,19 +34,19 @@ const SocialPage = ({user: profileUser}: {user: User}) => {
             />
           )}
           {isViewingProfile ? (
-            <div className="flex flex-col items-center justify-center h-full">
+            <div className="flex flex-col items-center pt-8 mt-8 h-full">
               <SocialProfileView user={profileUser} />
             </div>
           ) : selectedTab === "Following" ? (
             <SocialFollowingView />
           ) : (
-            <div className="flex flex-col items-center justify-center h-full">
+            <div className="flex flex-col items-center pt-8 mt-8 h-full">
               <SocialProfileView user={currentUser} />
             </div>
           )}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center h-full">
+        <div className="flex flex-col items-center pt-8 mt-8 h-full">
           <SocialOnboarding />
         </div>
       )}
