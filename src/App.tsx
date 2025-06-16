@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import DefaultPage from './DefaultPage';
-import SocialPage from './SocialPage';
+import SocialPage from './social/SocialPage';
 
 // Placeholder components for each route
 const Home = () => <DefaultPage />;

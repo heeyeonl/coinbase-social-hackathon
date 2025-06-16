@@ -74,3 +74,36 @@ export const navItems: NavItem[] = [
         href: "/more"
     },
 ];
+
+export const assets = [
+    {
+        id: "BTC",
+        name: "Bitcoin",
+        logo: "/asset-logos/BTC.png",
+        href: "https://www.coinbase.com/price/bitcoin"
+    },
+    {
+        id: "ETH",
+        name: "Ethereum",
+        logo: "/asset-logos/ETH.png",
+        href: "https://www.coinbase.com/price/ethereum"
+    },
+    {
+        id: "BNB",
+        name: "Binance Coin",
+        logo: "/asset-logos/BNB.png",
+        href: "https://www.coinbase.com/price/binance-coin"
+    },
+    {
+        id: "XRP",
+        name: "XRP",
+        logo: "/asset-logos/XRP.png",
+        href: "https://www.coinbase.com/price/xrp"
+    },
+    {
+        id: "USDT",
+        name: "Tether",
+        logo: "/asset-logos/USDT.png",
+        href: "https://www.coinbase.com/price/tether"
+    },    
+]

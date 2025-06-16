@@ -1,5 +1,9 @@
-export type user = {
+export type User = {
     id: string;
-    fullname: string;
+    fullName: string;
+    watchlist: string[];
+    mostAssets: string[];
     username?: string;
+    profilePicture?: string;
+    following: User[];
 }
