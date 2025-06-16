@@ -12,11 +12,11 @@ const TopNavigation = ({ navItems } : {
     const currItem = navItems.find(item => item.href === location.pathname);
     const iconClass = "flex justify-center items-center bg-[#EEF0F3] rounded-full cursor-pointer w-[42px] h-[42px] hover:bg-[#dcdee1]";
 
-    return <div className="flex justify-between items-center h-[75px] border-b-[1px] px-[32px] py-[16px]">
+    return <div className="flex justify-between items-center h-[75px] border-b-[1px] px-8 py-4">
         <h1 className="font-[Coinbase Display] text-[28px] font-semibold">
             {currItem?.title}
         </h1>
-        <div className="flex gap-[8px]">
+        <div className="flex gap-2">
             <SearchBar />
             <div className={iconClass}>
                 <NotificationsOutlinedIcon />

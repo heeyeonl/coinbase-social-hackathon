@@ -1,5 +1,10 @@
+import SearchModal from "./components/SearchModal";
 const SocialPage = () => {
-    return <div>social</div>
+    return <div className="p-8">
+        <div>
+            <SearchModal />
+        </div>
+    </div>
 }
 
 export default SocialPage;

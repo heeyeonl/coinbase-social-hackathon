@@ -8,12 +8,12 @@ const Navigation = ({ navItems }: { navItems: NavItem[] }) => {
 
   return (
     <>
-      <div className="flex justify-center xl:justify-start pb-[32px] w-full xl:pl-[8px] pt-[8px] cursor-pointer">
+      <div className="flex justify-center xl:justify-start pb-8 w-full xl:pl-2 pt-2 cursor-pointer">
         <NavLink to="/">
             <CoinbaseLogo />
         </NavLink>
       </div>
-      <nav className="flex flex-col w-full justify-center items-center xl:items-start gap-[4px] font-[Coinbase Sans]">
+      <nav className="flex flex-col w-full justify-center items-center xl:items-start gap-1 font-[Coinbase Sans]">
         {navItems.map(({ id, title, icon, iconFilled, href }) => {
           const isActive = location.pathname === href;
           return (
@@ -21,7 +21,7 @@ const Navigation = ({ navItems }: { navItems: NavItem[] }) => {
               key={id}
               to={href || "/"}
               className={({ isActive }) => `
-                                flex items-center justify-between  gap-[16px] p-[16px] xl:w-full text-[16px]
+                                flex items-center justify-between  gap-4 p-4 xl:w-full text-base
                                 hover:bg-[var(--hover)] rounded-full transition-colors
                                 ${
                                   isActive
@@ -30,7 +30,7 @@ const Navigation = ({ navItems }: { navItems: NavItem[] }) => {
                                 }
                             `}
             >
-              <div className="flex items-center gap-[16px]">
+              <div className="flex items-center gap-4">
                 <span>{isActive ? iconFilled : icon}</span>
                 <span className="hidden xl:block font-medium">
                   {title}
