@@ -2,6 +2,8 @@
 
 https://github.com/user-attachments/assets/2180d8db-aebf-4c53-b656-ce48247034e6
 
+
+Link: https://coinbase-social-hackathon.vercel.app/
 A weekend hackathon project inspired by Coinbase's Growth and Consumer org focus.
 
 ## Goal
