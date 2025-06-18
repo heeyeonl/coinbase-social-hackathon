@@ -3,8 +3,8 @@
 https://github.com/user-attachments/assets/2180d8db-aebf-4c53-b656-ce48247034e6
 
 
-Link: https://coinbase-social-hackathon.vercel.app/
-A weekend hackathon project inspired by Coinbase's Growth and Consumer org focus.
+
+A weekend hackathon project inspired by Coinbase's Growth and Consumer org focus. https://coinbase-social-hackathon.vercel.app/
 
 ## Goal
 
@@ -26,7 +26,7 @@ A weekend hackathon project inspired by Coinbase's Growth and Consumer org focus
 
 <img width="867" alt="figma-mockup" src="https://github.com/user-attachments/assets/09f28e77-389f-4e01-bd45-17812ecbbf09" />
 
-## Future Ideas (If Extended)
+## Future Ideas (If I had more time)
 
 - Profile customization (public/private)
 - Send/Request crypto to/from friends
