@@ -1,54 +1,25 @@
-# React + TypeScript + Vite
+A weekend hackathon project inspired by Coinbase's Growth and Consumer org focus.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Goal
 
-Currently, two official plugins are available:
+Designed to support growth by making crypto feel more approachable — users can discover and follow trusted friends’ portfolios, making it easier to get started.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## What I Built
 
-## Expanding the ESLint configuration
+- Search and follow a friend
+- View a friend's top 3 crypto assets
+- Interact via "Buy" or "Watchlist" buttons
+- Session-based mock data (no backend)
+- Built with React, TypeScript, and Tailwind CSS
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Process
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Designed in Figma
+- Developed and deployed to Vercel in under 48 hours
+- Followed Coinbase’s design principles and patterns for consistency
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Future Ideas (If Extended)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- Profile customization, follower/following system
+- Social feed of watchlist updates or milestones
+- Backend integration using Coinbase API and GraphQL
